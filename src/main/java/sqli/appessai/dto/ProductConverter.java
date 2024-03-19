@@ -9,6 +9,7 @@ public class ProductConverter {
         dto.setLabel(product.getLabel());
         dto.setPrice(product.getPrice());
         dto.setCategoryId(product.getCategoryId());
+        dto.setCode(product.getCode());
         return dto;
     }
 

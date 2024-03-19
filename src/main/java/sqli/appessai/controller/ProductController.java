@@ -29,4 +29,8 @@ public class ProductController {
     public void deleteProject(@PathVariable String productId) {
         productService.deleteProductById(productId);
     }
+    @GetMapping("/{projectId}")
+    public ProductDTO findProjectById(@PathVariable String projectId) {
+        return productService.getProjectById(projectId);
+    }
 }

@@ -32,4 +32,9 @@ public class ProductService {
     public void deleteProductById(String productId) {
          productRepository.deleteById(productId);
     }
+    public ProductDTO getProjectById(String projectId) {
+        Product product = productRepository.findById(projectId)
+                .orElseThrow(() -> new IllegalArgumentException("Project not found"));
+        return ProductConverter.toDTO(product);
+    }
 }
