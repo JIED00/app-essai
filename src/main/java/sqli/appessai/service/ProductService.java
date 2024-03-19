@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ProductSrevice {
+public class ProductService {
 
     ProductRepository productRepository;
 
-    public ProductSrevice(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
@@ -28,5 +28,8 @@ public class ProductSrevice {
         Product product = ProductConverter.fromDTO(productDTO);
 
         return productRepository.save(product);
+    }
+    public void deleteProductById(String productId) {
+         productRepository.deleteById(productId);
     }
 }
