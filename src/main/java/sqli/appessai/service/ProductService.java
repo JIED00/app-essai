@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 @Service
 public class ProductService {
 
-    ProductRepository productRepository;
+    static ProductRepository productRepository;
 
     public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+        ProductService.productRepository = productRepository;
     }
 
     public List<ProductDTO> getAllProduct() {
@@ -37,7 +37,10 @@ public class ProductService {
                 .orElseThrow(() -> new IllegalArgumentException("Product not found"));
         return ProductConverter.toDTO(product);
     }
-
+    public static boolean isProductCodeAlreadyExist(String code)
+    {
+        return productRepository.findById(code).isPresent();
+    }
     public ProductDTO updateProject( ProductDTO productDTO) {
         String productId=productDTO.getCode();
         Product existingProject = productRepository.findById(productId)

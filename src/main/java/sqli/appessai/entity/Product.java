@@ -8,7 +8,9 @@ import lombok.Setter;
 import sqli.appessai.exception.CategoryNotFoundException;
 import sqli.appessai.exception.NonPositivePriceException;
 import sqli.appessai.exception.NullCodeException;
+import sqli.appessai.exception.ProductCodeAlreadyExist;
 import sqli.appessai.service.CategoryService;
+import sqli.appessai.service.ProductService;
 
 @Getter
 @NoArgsConstructor
@@ -35,8 +37,9 @@ public class Product {
     }
 
     public void setCode(String code) {
-        if (code != null) this.code = code;
-        else throw new NullCodeException();
+        if (code != null && !ProductService.isProductCodeAlreadyExist(code)) this.code = code;
+        else if (code ==null)throw new NullCodeException();
+        else throw new ProductCodeAlreadyExist(code);
 
     }
 
