@@ -34,7 +34,18 @@ public class ProductService {
     }
     public ProductDTO getProjectById(String projectId) {
         Product product = productRepository.findById(projectId)
-                .orElseThrow(() -> new IllegalArgumentException("Project not found"));
+                .orElseThrow(() -> new IllegalArgumentException("Product not found"));
         return ProductConverter.toDTO(product);
+    }
+
+    public ProductDTO updateProject( ProductDTO productDTO) {
+        String productId=productDTO.getCode();
+        Product existingProject = productRepository.findById(productId)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+        existingProject.setPrice(productDTO.getPrice());
+        existingProject.setLabel(productDTO.getLabel());
+        existingProject.setCategoryId(productDTO.getCategoryId());
+        existingProject = productRepository.save(existingProject);
+        return ProductConverter.toDTO(existingProject);
     }
 }

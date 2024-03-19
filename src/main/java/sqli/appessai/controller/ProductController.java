@@ -33,4 +33,9 @@ public class ProductController {
     public ProductDTO findProjectById(@PathVariable String projectId) {
         return productService.getProjectById(projectId);
     }
+    @PutMapping
+    public ProductDTO updateProduct(@RequestBody ProductDTO productDTO)
+    {
+        return productService.updateProject(productDTO);
+    }
 }
