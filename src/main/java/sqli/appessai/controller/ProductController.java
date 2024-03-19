@@ -1,9 +1,8 @@
 package sqli.appessai.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sqli.appessai.dto.ProductDTO;
+import sqli.appessai.entity.Product;
 import sqli.appessai.service.ProductSrevice;
 
 import java.util.List;
@@ -16,9 +15,14 @@ public class ProductController {
     public ProductController(ProductSrevice productSrevice) {
         this.productSrevice = productSrevice;
     }
+
     @GetMapping
-    List<ProductDTO> getAllProduct()
-    {
+    List<ProductDTO> getAllProduct() {
         return productSrevice.getAllProduct();
+    }
+
+    @PostMapping
+    Product addProduct(@RequestBody ProductDTO productDTO) {
+        return productSrevice.addProduct(productDTO);
     }
 }

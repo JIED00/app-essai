@@ -14,7 +14,7 @@ import sqli.appessai.service.CategoryService;
 @NoArgsConstructor
 @Entity
 public class Product {
-@Id
+    @Id
     String code;
     @Setter
     String label;
@@ -39,13 +39,11 @@ public class Product {
         else throw new NullCodeException();
 
     }
-    void setCategoryId(String id )
-    {
-        if(CategoryService.isCategoryExist(id)) this.categoryId=id;
+
+    public void setCategoryId(String id) {
+        if (CategoryService.isCategoryExist(id)) this.categoryId = id;
         else throw new CategoryNotFoundException(id);
     }
-
-
 
 
 }

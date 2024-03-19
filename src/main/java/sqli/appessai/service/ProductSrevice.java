@@ -24,4 +24,9 @@ public class ProductSrevice {
                 .map(ProductConverter::toDTO)
                 .collect(Collectors.toList());
     }
+    public Product addProduct(ProductDTO productDTO) {
+        Product product = ProductConverter.fromDTO(productDTO);
+
+        return productRepository.save(product);
+    }
 }

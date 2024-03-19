@@ -8,14 +8,16 @@ public class ProductConverter {
         ProductDTO dto = new ProductDTO();
         dto.setLabel(product.getLabel());
         dto.setPrice(product.getPrice());
+        dto.setCategoryId(product.getCategoryId());
         return dto;
     }
 
-    public Product fromDTO(ProductDTO dto) {
+    public static Product fromDTO(ProductDTO dto) {
         Product product = new Product();
         product.setPrice(dto.getPrice());
         product.setLabel(dto.getLabel());
         product.setCode(dto.getCode());
+        product.setCategoryId(dto.getCategoryId());
 
         return product;
     }
